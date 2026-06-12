@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth";
 import { OfferForm } from "@/components/admin/offer-form";
 import { notFound } from "next/navigation";
 
@@ -8,6 +9,8 @@ export default async function EditOfferPage({
 }: {
   params: { id: string };
 }) {
+  await requireAdmin();
+
   const offer = await prisma.offer.findUnique({
     where: { id: params.id },
   });

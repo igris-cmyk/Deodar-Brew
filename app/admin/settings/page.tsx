@@ -1,8 +1,11 @@
 export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth";
 import { SettingsForm } from "@/components/admin/settings-form";
 
 export default async function AdminSettingsPage() {
+  await requireAdmin();
+
   const settings = await prisma.cafeSettings.findFirst();
 
   let initialData;

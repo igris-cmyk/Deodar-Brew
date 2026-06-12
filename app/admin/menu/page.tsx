@@ -1,13 +1,17 @@
 export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth";
 import Link from "next/link";
-import { Plus, Pencil, Trash2, Check, X } from "lucide-react";
+import { Plus, Pencil, Check, X } from "lucide-react";
+import { ConfirmDeleteForm } from "@/components/admin/confirm-delete-form";
 import { toggleAvailabilityAction, toggleFeaturedAction, deleteMenuItemAction } from "./actions";
 
 export default async function AdminMenuPage() {
+  await requireAdmin();
+
   const items = await prisma.menuItem.findMany({
     include: { category: true },
-    orderBy: [{ category: { sortOrder: "asc" } }, { sortOrder: "asc" }],
+    orderBy: [{ category: { sortOrder: "asc" } }, { sortOrder: "asc" }, { name: "asc" }],
   });
 
   return (
@@ -46,7 +50,9 @@ export default async function AdminMenuPage() {
                 {items.map((item) => (
                   <tr key={item.id} className="hover:bg-cedar-cream/50 transition-colors">
                     <td className="px-4 py-3 font-medium text-cedar-espresso">{item.name}</td>
-                    <td className="px-4 py-3 text-cedar-charcoal/80">{item.category.name}</td>
+                    <td className="px-4 py-3 text-cedar-charcoal/80">
+                      {item.category?.name ?? "Uncategorized"}
+                    </td>
                     <td className="px-4 py-3 text-cedar-charcoal/80">₹{item.price}</td>
                     <td className="px-4 py-3 text-cedar-charcoal/80">{item.itemType}</td>
                     <td className="px-4 py-3 text-center">
@@ -71,12 +77,12 @@ export default async function AdminMenuPage() {
                       <Link href={`/admin/menu/${item.id}/edit`} className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-cedar-brown hover:bg-cedar-beige transition-colors">
                         <Pencil className="h-4 w-4" />
                       </Link>
-                      <form action={deleteMenuItemAction} className="inline-block" onSubmit={(e) => { if(!confirm('Are you sure you want to delete this item?')) e.preventDefault(); }}>
-                        <input type="hidden" name="id" value={item.id} />
-                        <button type="submit" className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-red-500 hover:bg-red-50 transition-colors">
-                          <Trash2 className="h-4 w-4" />
-                        </button>
-                      </form>
+                      <ConfirmDeleteForm
+                        id={item.id}
+                        action={deleteMenuItemAction}
+                        message="Are you sure you want to delete this item?"
+                        label={`Delete ${item.name}`}
+                      />
                     </td>
                   </tr>
                 ))}

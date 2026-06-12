@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth";
 import { MenuForm } from "@/components/admin/menu-form";
 import { notFound } from "next/navigation";
 
@@ -8,6 +9,8 @@ export default async function EditMenuItemPage({
 }: {
   params: { id: string };
 }) {
+  await requireAdmin();
+
   const [categories, item] = await Promise.all([
     prisma.category.findMany({ orderBy: { sortOrder: "asc" } }),
     prisma.menuItem.findUnique({ where: { id: params.id } }),

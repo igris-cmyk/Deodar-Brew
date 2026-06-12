@@ -1,10 +1,14 @@
 export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth";
 import Link from "next/link";
-import { Plus, Pencil, Trash2, Check, X } from "lucide-react";
+import { Plus, Pencil, Check, X } from "lucide-react";
+import { ConfirmDeleteForm } from "@/components/admin/confirm-delete-form";
 import { toggleOfferActiveAction, deleteOfferAction } from "./actions";
 
 export default async function AdminOffersPage() {
+  await requireAdmin();
+
   const offers = await prisma.offer.findMany({
     orderBy: { sortOrder: "asc" },
   });
@@ -66,12 +70,12 @@ export default async function AdminOffersPage() {
                       <Link href={`/admin/offers/${offer.id}/edit`} className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-cedar-brown hover:bg-cedar-beige transition-colors">
                         <Pencil className="h-4 w-4" />
                       </Link>
-                      <form action={deleteOfferAction} className="inline-block" onSubmit={(e) => { if(!confirm('Are you sure you want to delete this offer?')) e.preventDefault(); }}>
-                        <input type="hidden" name="id" value={offer.id} />
-                        <button type="submit" className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-red-500 hover:bg-red-50 transition-colors">
-                          <Trash2 className="h-4 w-4" />
-                        </button>
-                      </form>
+                      <ConfirmDeleteForm
+                        id={offer.id}
+                        action={deleteOfferAction}
+                        message="Are you sure you want to delete this offer?"
+                        label={`Delete ${offer.title}`}
+                      />
                     </td>
                   </tr>
                 ))}
