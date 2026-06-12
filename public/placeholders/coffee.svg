@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#FAF6F0"/>
+  <ellipse cx="200" cy="170" rx="70" ry="20" fill="#D4C4B4"/>
+  <path d="M140 100 C140 60 260 60 260 100 L260 160 C260 180 140 180 140 160 Z" fill="#6B3A2A"/>
+  <path d="M150 105 C150 75 250 75 250 105 L250 150 C250 165 150 165 150 150 Z" fill="#8B5E3C"/>
+  <path d="M260 115 Q290 115 290 135 Q290 155 260 155" stroke="#6B3A2A" stroke-width="8" fill="none"/>
+  <ellipse cx="180" cy="95" rx="15" ry="25" fill="#D4C4B4" opacity="0.3"/>
+  <path d="M175 70 Q178 50 182 70" stroke="#C4884A" stroke-width="2" fill="none" opacity="0.6">
+    <animate attributeName="d" values="M175 70 Q178 50 182 70;M175 70 Q178 45 182 70;M175 70 Q178 50 182 70" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M195 65 Q198 42 202 65" stroke="#C4884A" stroke-width="2" fill="none" opacity="0.5">
+    <animate attributeName="d" values="M195 65 Q198 42 202 65;M195 65 Q198 37 202 65;M195 65 Q198 42 202 65" dur="2.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M215 70 Q218 50 222 70" stroke="#C4884A" stroke-width="2" fill="none" opacity="0.4">
+    <animate attributeName="d" values="M215 70 Q218 50 222 70;M215 70 Q218 45 222 70;M215 70 Q218 50 222 70" dur="3s" repeatCount="indefinite"/>
+  </path>
+  <text x="200" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#6B3A2A">Coffee</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#FAF6F0"/>
+  <ellipse cx="200" cy="180" rx="60" ry="15" fill="#D4C4B4"/>
+  <path d="M150 110 L155 170 C155 185 245 185 245 170 L250 110 Z" fill="#E8DDD0"/>
+  <path d="M150 110 C150 95 250 95 250 110 C250 120 150 120 150 110 Z" fill="#D4C4B4"/>
+  <path d="M165 108 C165 100 235 100 235 108" fill="#4A6741" opacity="0.6"/>
+  <circle cx="185" cy="106" r="3" fill="#4A6741" opacity="0.4"/>
+  <circle cx="215" cy="106" r="3" fill="#4A6741" opacity="0.4"/>
+  <rect x="188" y="90" width="4" height="15" rx="2" fill="#C4884A" opacity="0.3"/>
+  <path d="M250 125 Q275 125 275 142 Q275 158 250 158" stroke="#D4C4B4" stroke-width="6" fill="none"/>
+  <path d="M180 80 Q183 62 186 80" stroke="#4A6741" stroke-width="2" fill="none" opacity="0.4">
+    <animate attributeName="d" values="M180 80 Q183 62 186 80;M180 80 Q183 55 186 80;M180 80 Q183 62 186 80" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M200 75 Q203 55 206 75" stroke="#4A6741" stroke-width="2" fill="none" opacity="0.3">
+    <animate attributeName="d" values="M200 75 Q203 55 206 75;M200 75 Q203 48 206 75;M200 75 Q203 55 206 75" dur="2.8s" repeatCount="indefinite"/>
+  </path>
+  <text x="200" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#4A6741">Tea</text>
+</svg>
